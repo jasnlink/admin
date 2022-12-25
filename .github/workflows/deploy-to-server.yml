@@ -17,7 +17,7 @@ jobs:
           local_dir: "./public"
           remote_dir: "/var/medusa-admin"
         run: |
-          npm ci
+          npm install
           npm run build
           mkdir ~/.ssh
           echo "$remote_key" > ~/.ssh/id_medusa_server_deploy_key
