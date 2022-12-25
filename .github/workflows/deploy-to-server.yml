@@ -14,12 +14,13 @@ jobs:
           remote_port: ${{ secrets.DEPLOY_PORT }}
           remote_user: ${{ secrets.DEPLOY_USER }}
           remote_key: ${{ secrets.DEPLOY_KEY }}
+          medusa_backend_url: ${{ secrets.MEDUSA_BACKEND_URL }}
           dev_env_file: ${{ secrets.DEV_ENV_FILE }}
           local_dir: "./public/"
           remote_dir: "/var/medusa-admin"
         run: |
           npm install
-          npm run build
+          MEDUSA_BACKEND_URL=${medusa_backend_url} npm run build
           mkdir ~/.ssh
           echo "$remote_key" > ~/.ssh/id_medusa_server_deploy_key
           chmod 600 ~/.ssh/id_medusa_server_deploy_key
